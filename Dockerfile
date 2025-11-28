@@ -7,6 +7,8 @@ RUN npm install
 
 COPY . .
 
+RUN rm -f eslint.config.mjs .eslintrc.json
+
 RUN npm run build
 
 EXPOSE 3000
