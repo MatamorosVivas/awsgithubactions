@@ -1,13 +1,16 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
+RUN apk add --no-cache libc6-compat
+
 COPY package*.json ./
-RUN npm install
+
+RUN npm install --ignore-scripts
 
 COPY . .
 
-RUN rm -f eslint.config.mjs .eslintrc.json
+RUN rm -f next.config.ts eslint.config.mjs
 
 RUN npm run build
 
